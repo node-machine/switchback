@@ -25,10 +25,21 @@ cb = switchback(cb);
 ```
 
 
-##### Setting up your functions to accept switchback objects AND node callbacks
+##### Setting up your functions to accept switchback objects OR standard node callbacks
 ```javascript
 var switchback = require('node-switchback');
 
+function myFunction (stuff, cb) {
+  var sb = switchback(cb);
+  
+  sb(err, whateverElse, doYoThang);
+  // that's it!
+}
+
+```
+
+
+```javascript
 // Your function of choice
 function freeHouseholdPets (stuff, moreStuff, lookAtAllThisStuff, cb) {
   
