@@ -1,7 +1,7 @@
 {
   "name": "switchback",
   "version": "0.0.0",
-  "description": "Switching utility which builds and returns a handler which is capable of calling one of several callbacks.",
+  "description": "Normalize callback fns to switchbacks and vice versa",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -14,11 +14,13 @@
     "test": "mocha"
   },
   "keywords": [
+    "switchback",
+    "handlers",
+    "success",
+    "error",
     "switcher",
     "async.if",
-    "exits",
-    "sails",
-    "util"
+    "sails"
   ],
   "author": "Mike McNeil",
   "license": "MIT",
