@@ -1,0 +1,31 @@
+{
+  "name": "switchback",
+  "version": "0.0.0",
+  "description": "Switching utility which builds and returns a handler which is capable of calling one of several callbacks.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikermcneil/switchback.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "switcher",
+    "async.if",
+    "exits",
+    "sails",
+    "util"
+  ],
+  "author": "Mike McNeil",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "should": "~2.1.1"
+  }
+}
