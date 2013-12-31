@@ -10,7 +10,22 @@ Normalize a callback to a "switchback" and vice versa.
 
 
 
-##### To allow your functions to accept switchbacks
+##### To upgrade node callbacks
+```javascript
+// Some arbitrary callback function
+var cb = function (err, foo, bar, baz /*, ... */) {
+  if (err) return console.error(err);
+  return console.log({ foo: foo, bar: bar, baz: baz });
+};
+
+
+cb = switchback(cb);
+
+// Now you can call `cb.error()` and `cb.success()` with your favorite arguments.
+```
+
+
+##### Setting up your functions to accept switchback objects AND node callbacks
 ```javascript
 var switchback = require('node-switchback');
 
@@ -54,14 +69,6 @@ function freeHouseholdPets (stuff, moreStuff, lookAtAllThisStuff, cb) {
 
 // Now everybody can do:
 freeHouseholdPets()
-
-// Some arbitrary callback function
-var cb = function (err, foo, bar, baz /*, ... */) {
-  if (err) return console.error(err);
-  return console.log({ foo: foo, bar: bar, baz: baz });
-};
-
-
 
 ```
 
