@@ -42,40 +42,76 @@ describe('switchback(Function)', function (){
 
 	it('should return a switchback', function () {
 		sb = switchback(cb);
-
 		sb.should.be.a.Function;
 		(switchback.isSwitchback(sb)).should.be.ok;
 	});
 
+
+
+
 	describe('when calling returned switchback as sb(null, 14, 23),', function () {
 		var cbOutcome = {};
-		it('should trigger callback', function (done) {
-			// When callback fires, proceed
-			Bus.afterFixture('fn', cbOutcome, done);
-
-			// Usage
+		_listenForCallback(cbOutcome, function () {
 			sb(null, 14, 23);
 		});
 
-		it('should NOT receive error argument in original cb function', function () {
-			should(cbOutcome.args).be.ok;
-			should(cbOutcome.ctx).be.ok;
-			cbOutcome.args.should.be.an.Array;
-			cbOutcome.args.length.should.be.above(0);
-			should(cbOutcome.args[0]).not.be.ok;
-		});
-		it('should receive the two subsequent arguments in original cb function', function () {
-			should(cbOutcome.args).be.ok;
-			should(cbOutcome.ctx).be.ok;
-			cbOutcome.args.should.be.an.Array;
-			cbOutcome.args.length.should.be.above(1);
-			should(cbOutcome.args[1]).be.ok;
-			should(cbOutcome.args[2]).be.ok;
-		});
+		_testThatCallbackHasNoError(cbOutcome);
+		_testThatOtherArgumentsExist(cbOutcome);
 	});
 
-	describe('when calling returned switchback with an error argument,', function () {
-		
+
+
+
+	describe('when calling returned switchback as sb("some error", 14, 23),', function () {
+		var cbOutcome = {};
+		_listenForCallback(cbOutcome, function () {
+			sb('some error', 14, 23);
+		});
+
+		_testThatCallbackHasError(cbOutcome);
+		_testThatOtherArgumentsExist(cbOutcome);
+	});
+
+
+
+
+	describe('when calling returned switchback as sb.error("some error", 14, 23),', function () {
+		var cbOutcome = {};
+		_listenForCallback(cbOutcome, function () {
+			sb.error('some error', 14, 23);
+		});
+
+		_testThatCallbackHasError(cbOutcome);
+		_testThatOtherArgumentsExist(cbOutcome);
+	});
+	describe('when calling returned switchback as sb.error(),', function () {
+		var cbOutcome = {};
+		_listenForCallback(cbOutcome, function () {
+			sb.error();
+		});
+
+		_testThatCallbackHasError(cbOutcome);
+	});
+
+
+
+
+	describe('when calling returned switchback as sb.success("should not be an error", 14, 23),', function () {
+		var cbOutcome = {};
+		_listenForCallback(cbOutcome, function () {
+			sb.success('should not be an error', 14, 23);
+		});
+
+		_testThatCallbackHasNoError(cbOutcome);
+		_testThatOtherArgumentsExist(cbOutcome);
+	});
+	describe('when calling returned switchback as sb.success(),', function () {
+		var cbOutcome = {};
+		_listenForCallback(cbOutcome, function () {
+			sb.success();
+		});
+
+		_testThatCallbackHasNoError(cbOutcome);
 	});
 });
 
@@ -103,3 +139,44 @@ describe('switchback(Handlers, Object, Object)', function (){
 });
 
 
+
+
+
+// Helpers
+function _testThatCallbackHasError (cbOutcome) {
+	it('should NOT receive error argument in original cb function', function () {
+		should(cbOutcome.args).be.ok;
+		should(cbOutcome.ctx).be.ok;
+		cbOutcome.args.should.be.an.Array;
+		cbOutcome.args.length.should.be.above(0);
+		should(cbOutcome.args[0]).be.ok;
+	});
+}
+
+function _testThatCallbackHasNoError (cbOutcome) {
+	it('should NOT receive error argument in original cb function', function () {
+		should(cbOutcome.args).be.ok;
+		should(cbOutcome.ctx).be.ok;
+		cbOutcome.args.should.be.an.Array;
+		should(cbOutcome.args[0]).not.be.ok;
+	});
+}
+
+function _testThatOtherArgumentsExist (cbOutcome) {
+	it('should receive the two subsequent arguments in original cb function', function () {
+		should(cbOutcome.args).be.ok;
+		should(cbOutcome.ctx).be.ok;
+		cbOutcome.args.should.be.an.Array;
+		cbOutcome.args.length.should.be.above(1);
+		should(cbOutcome.args[1]).be.ok;
+		should(cbOutcome.args[2]).be.ok;
+	});
+}
+
+function _listenForCallback (cbOutcome, fnThatRunsCallback) {
+	before(function (done) {
+		// When callback fires, proceed
+		Bus.afterFixture('fn', cbOutcome, done);
+		fnThatRunsCallback();
+	});
+}
