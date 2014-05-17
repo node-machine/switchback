@@ -4,8 +4,7 @@
 [![NPM version](https://badge.fury.io/js/node-switchback.png)](http://badge.fury.io/js/node-switchback) &nbsp; &nbsp;
 [![Build Status](https://travis-ci.org/balderdashy/switchback.svg?branch=master)](https://travis-ci.org/balderdashy/switchback)
 
-switchback
-========
+========================================
 
 Normalize a callback to a "switchback" and vice versa.
 
