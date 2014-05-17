@@ -1,16 +1,26 @@
+# [<img title="switchback - Delinearizes flow control into a more realistic directed graph" src="http://i.imgur.com/Jgrc9k2.png" width="75px" alt="image of a mountain switchback"/>](https://github.com/balderdashy/switchback) Switchback
+
+[![Bower version](https://badge.fury.io/bo/switchback.png)](http://badge.fury.io/bo/switchback)
+[![NPM version](https://badge.fury.io/js/node-switchback.png)](http://badge.fury.io/js/node-switchback) &nbsp; &nbsp;
+[![Build Status](https://travis-ci.org/balderdashy/switchback.svg?branch=master)](https://travis-ci.org/balderdashy/switchback)
+
 switchback
 ========
 
 Normalize a callback to a "switchback" and vice versa.
 
-+ Allows your functions to "branch".
-+ Makes usage of branching functions suck less.
-+ Maintains 100% compatibility with node callbacks.
-+ Helps keep users of your async functions from "forgetting to return early" andthentimespaceparadox
++ Allows your functions to **"[b](http://en.wikipedia.org/wiki/Branch_table)[r](http://en.wikipedia.org/wiki/Monad_(functional_programming))[a](http://www.afralisp.net/autolisp/tutorials/cond-vs-if.php)[n](http://en.wikipedia.org/wiki/Dispatch_table)[ch](http://en.wikipedia.org/wiki/Virtual_method_table)"**.
++ Makes usage of branching functions **suck less**.
++ Maintains **100% compatibility** with [node callbacks](http://nodeguide.com/style.html#callbacks).
++ Helps keep users of your async functions from "forgetting to return early" **andthentimespaceparadox**
 + [Table the label, wear your own name.](http://news.moviefone.com/2010/05/26/cheesy-mr-t-clip-advises-you-to-table-the-label/)
 
-> You might be familiar with a simlar concept from `jQuery.ajax` (i.e. `$.ajax({ success: foo, error: bar });`)
+> You might be familiar with a similar concept from `jQuery.ajax` (i.e. `$.ajax({ success: foo, error: bar });`)
 
+For Node.js and the browser.
+
+
+========================================
 
 ## Usage
 
@@ -101,7 +111,7 @@ function myFunction (stuff, cb) {
 ```
 
 
-
+========================================
 
 
 ## Details
@@ -182,7 +192,7 @@ freeHouseholdPets({
 
 ```
 
-
+========================================
 
 
 ## Using switchbacks with other flow control libraries
@@ -201,3 +211,20 @@ freeHouseholdPets({
 ```javascript
 // TODO
 ```
+
+
+========================================
+
+## License
+
+**[MIT](./LICENSE)**
+&copy; 2014
+[Mike McNeil](http://michaelmcneil.com), [Balderdash](http://balderdash.co) & contributors
+
+This module is free and open-source under the [MIT License](http://sails.mit-license.org/).
+
+
+![image_squidhome@2x.png](http://i.imgur.com/RIvu9.png)
+
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/a22d3919de208c90c898986619efaa85 "githalytics.com")](http://githalytics.com/balderdashy/switchback)
