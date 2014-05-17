@@ -78,7 +78,20 @@ mowLawn('quickly', 'zigzags', function (err, dollarsEarned) {
 
 ### Implementing a function with a switchback
 
-Adding an optional switchback interface to a function is pretty simple.  Just call `switchback()` on the callback at the top of your function, overriding the original value:
+
+Adding an optional switchback interface to a function is pretty simple.  Just install:
+
+```sh
+$ npm install node-switchback --save
+```
+
+Require:
+
+```js
+var switchback = require('node-switchback');
+```
+
+And then call `switchback()` on the callback at the top of your function, overriding the original value:
 
 ```javascript
 cb = switchback(cb);
