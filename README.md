@@ -71,8 +71,20 @@ mowLawn('quickly', 'zigzags', function (err, dollarsEarned) {
 });
 
 // Both are cool.
-```
 
+
+// Finally, it's worth noting that the return value is an EventEmitter:
+mowLawn('quickly', 'zigzags')
+.on('gasolineExplosion', function (err) {
+  // Safety goggles next time.
+})
+.on('sliceOffFinger', function (numFingersLost) {
+  // Oh my.
+})
+.on('success', function (dollarsEarned) {
+  // Lawn was mowed, everything worked.
+})
+```
 
 
 
