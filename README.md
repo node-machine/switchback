@@ -19,6 +19,19 @@ Normalize a callback to a "switchback" and vice versa.
 
 For Node.js and the browser.
 
+========================================
+
+## Contents
+
+|     | Jump to...        |
+|-----|-------------------------|
+| I   | [Usage for Users](#using-a-function-with-a-switchback)
+| II  | [Usage for Implementors](#implementing-a-function-with-a-switchback)
+| III | [Usage w/ Other Flow Control Libraries](#using-switchbacks-with-other-flow-control-libraries)
+| IV  | [Details](#details)
+| V   | [License](#license)
+
+
 
 ========================================
 
