@@ -14,7 +14,7 @@ Normalize a callback to a "switchback" and vice versa.
 
 ## Usage
 
-##### Using a function with a switchback
+### Using a function with a switchback
 ```javascript
 
 // So you heard about this new function called `mowLawn`
@@ -22,14 +22,14 @@ Normalize a callback to a "switchback" and vice versa.
 // handler, and a catch-all `error` handler, but turns out
 // it also has two others: `gasolineExplosion` and `sliceOffFinger`.
 
-// Let's try it! 
+// Let's try it!
 
 // Pass in a switchback:
 mowLawn('quickly', 'zigzags', {
   // We can omit the `error` handler because the documentation for `mowLawn` says that it's optional.
   // This varies function-to-function.
   // (i.e. its only purpose is to act as a catch-all if the two explicit handlers are not specified)
-  
+
   gasolineExplosion: function () {
     // Safety goggles next time.
   },
@@ -45,39 +45,62 @@ mowLawn('quickly', 'zigzags', {
 mowLawn('quickly', 'zigzags', function (err, dollarsEarned) {
   if (err) {
     // Handle the error, count fingers to figure out what happened, etc.
-    // Also don't forget to returnearly or use `else` or something.
+    // Also don't forget to return early or use `else` or something.
     return;
   }
-  
+
   // Lawn was mowed, everything worked.
 });
 
 // Both are cool.
 ```
 
-##### Writing a function that takes advantage of switchbacks
+
+
+
+### Implementing a function with a switchback
+
+Adding an optional switchback interface to a function is pretty simple.  Just call `switchback()` on the callback at the top of your function, overriding the original value:
+
+```javascript
+cb = switchback(cb);
+```
+
+To enable complete, chainable usage, you should also return the switchback from your function:
+
+```javascript
+return cb;
+```
+
+For example:
+
 ```javascript
 var switchback = require('node-switchback');
 
 function myFunction (stuff, cb) {
   cb = switchback(cb);
   // that's it!
-  
+
   // All the standard callback things work the same
   if (err) return cb(err);
-  
+
   // But now you can call custom handlers too:
   if (cb.someHandler) {
-    
+
   }
-  
+
   // Mix it up!
   // Table the label!
   // Wear your own name!
   cb(null, 'whatever', 'you', 'want');
+
+  // Make it chainable
+  return cb;
 }
 
 ```
+
+
 
 
 
@@ -91,41 +114,41 @@ function freeHouseholdPets (cb) {
   // At the very top, upgrade the callback to a switchback.
   // You can also do `var sb = switchback(cb)` to make the distinction explicit.
   cb = switchback(cb);
-  
+
   // Do your stuff
   // ...
-  
-  
+
+
   // If cb was a switchback:
   /////////////////////////////////////////////////
-  
+
   // Things that trigger the `success` handler:
   return cb();
   return cb(null);
   return cb.success('the results!!!!');
   return cb.success();
-  
-  
+
+
   // Things that trigger the `error` handler:
   return cb('bahh!');
   return cb.error('bahh!');
   return cb.error();
-  
-  
+
+
   // If cb was a callback function:
   /////////////////////////////////////////////////
-  
+
   // OK but what about usage with normal node callbacks?
   //
   // If a user of `freeHouseholdPets()` passes in an old-school callback,
   // e.g. function (err, results) {console.log(err,results);}, here's what
   // will get printed to the console in each case:
-  
+
   cb() // ---> null undefined
   cb(null, 'the results!!!!') // ---> null the results!!!!
   cb.success() // ---> null undefined
   cb.success('the results!!!!'); // ---> null the results!!!!
-  
+
   cb('bahh!') // ---> bahh! undefined
   cb('bahh!', 'foo') // ---> bahh! foo
   cb.error() // ---> [Error] undefined
@@ -142,7 +165,7 @@ freeHouseholdPets(function (err, results) {
     // or use `else` or something..
     return;
   }
-  
+
   // Pets were freed, we can go about our business
 });
 
