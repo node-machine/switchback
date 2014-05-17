@@ -4,6 +4,19 @@
 [![NPM version](https://badge.fury.io/js/node-switchback.png)](http://badge.fury.io/js/node-switchback) &nbsp; &nbsp;
 [![Build Status](https://travis-ci.org/balderdashy/switchback.svg?branch=master)](https://travis-ci.org/balderdashy/switchback)
 
+========================================
+
+JavaScript flow control library.  Works alongside async, promises, generators, and conventional Node callbacks to provide support for error negotiation via casefunctions.  Also makes your callbacks EventEmitters.
+
+> #### Context
+>
+> + You might be familiar with a similar concept from `jQuery.ajax` (i.e. `$.ajax({ success: foo, error: bar });`).
+> + It may be helpful to think about this module as the equivalent of something like `async.if()` or `async.switch()`.
+
+
+========================================
+
+## What is this?
 
 Normalize a callback to a "switchback" and vice versa.
 
@@ -11,11 +24,9 @@ Normalize a callback to a "switchback" and vice versa.
 + Makes usage of branching functions **suck less**.
 + Maintains **100% compatibility** with [node callbacks](http://nodeguide.com/style.html#callbacks).
 + Helps keep users of your async functions from "forgetting to return early" **andthentimespaceparadox**
++ Works w/ Node.js and in the browser.
 + [Table the label, wear your own name.](http://news.moviefone.com/2010/05/26/cheesy-mr-t-clip-advises-you-to-table-the-label/)
 
-> You might be familiar with a similar concept from `jQuery.ajax` (i.e. `$.ajax({ success: foo, error: bar });`)
-
-For Node.js and the browser.
 
 ========================================
 
