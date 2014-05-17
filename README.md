@@ -4,20 +4,6 @@
 [![NPM version](https://badge.fury.io/js/node-switchback.png)](http://badge.fury.io/js/node-switchback) &nbsp; &nbsp;
 [![Build Status](https://travis-ci.org/balderdashy/switchback.svg?branch=master)](https://travis-ci.org/balderdashy/switchback)
 
-========================================
-
-JavaScript flow control library.  Works alongside async, promises, generators, and conventional Node callbacks to provide support for error negotiation via casefunctions.  Also makes your callbacks EventEmitters.
-
-> #### Context
->
-> + You might be familiar with a similar concept from `jQuery.ajax` (i.e. `$.ajax({ success: foo, error: bar });`).
-> + It may be helpful to think about this module as the equivalent of something like `async.if()` or `async.switch()`.
-
-
-========================================
-
-## What is this?
-
 Normalize a callback to a "switchback" and vice versa.
 
 + Allows your functions to **"[b](http://en.wikipedia.org/wiki/Branch_table)[r](http://en.wikipedia.org/wiki/Monad_(functional_programming))[a](http://www.afralisp.net/autolisp/tutorials/cond-vs-if.php)[n](http://en.wikipedia.org/wiki/Dispatch_table)[ch](http://en.wikipedia.org/wiki/Virtual_method_table)"**.
@@ -137,6 +123,9 @@ function myFunction (stuff, cb) {
 
 
 ## Details
+
+Switchback is a JavaScript flow control library.  It works alongside async, promises, generators, and conventional Node callbacks to provide support for error negotiation via casefunctions.  It also makes your callbacks EventEmitters.  You might be familiar with a similar concept from `jQuery.ajax` (i.e. `$.ajax({ success: foo, error: bar });`).  It may be helpful to think about this module as the equivalent of something like `async.if()` or `async.switch()`.
+
 
 ##### More examples of exactly what to expect
 
