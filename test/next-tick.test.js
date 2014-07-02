@@ -71,15 +71,15 @@ describe('synchronous function w/ a switchback ::', function() {
         blah: 'this other argument doesnt matter',
         blahblah: 'its the callback we care about'
       })
-        .on('error', function(err) {
-          clearTimeout(timer);
-          return done(err);
-        })
-        .on('success', function(data) {
-          clearTimeout(timer);
-          assert.equal(data, 'some stuff');
-          return done();
-        });
+      .on('error', function(err) {
+        clearTimeout(timer);
+        return done(err);
+      })
+      .on('success', function(data) {
+        clearTimeout(timer);
+        assert.equal(data, 'some stuff');
+        return done();
+      });
 
     });
 
