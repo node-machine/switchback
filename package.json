@@ -1,6 +1,6 @@
 {
-  "name": "node-switchback",
-  "version": "0.1.2",
+  "name": "switchback",
+  "version": "1.0.0",
   "description": "Normalize callback fns to switchbacks and vice versa",
   "main": "lib/index.js",
   "directories": {
