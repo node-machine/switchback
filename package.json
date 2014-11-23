@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mikermcneil/switchback.git"
+    "url": "git://github.com/node-machine/switchback.git"
   },
   "scripts": {
     "test": "mocha"
