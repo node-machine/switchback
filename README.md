@@ -1,8 +1,8 @@
-# [<img title="switchback - Delinearizes flow control into a more realistic directed graph" src="http://i.imgur.com/Jgrc9k2.png" width="75px" alt="image of a mountain switchback"/>](https://github.com/balderdashy/switchback) Switchback
+# [<img title="switchback - Delinearizes flow control into a more realistic directed graph" src="http://i.imgur.com/Jgrc9k2.png" width="75px" alt="image of a mountain switchback"/>](https://github.com/node-machine/switchback) Switchback
 
 [![Bower version](https://badge.fury.io/bo/switchback.png)](http://badge.fury.io/bo/switchback)
-[![NPM version](https://badge.fury.io/js/node-switchback.png)](http://badge.fury.io/js/node-switchback) &nbsp; &nbsp;
-[![Build Status](https://travis-ci.org/balderdashy/switchback.svg?branch=master)](https://travis-ci.org/balderdashy/switchback)
+[![NPM version](https://badge.fury.io/js/switchback.png)](http://badge.fury.io/js/switchback) &nbsp; &nbsp;
+[![Build Status](https://travis-ci.org/node-machine/switchback.svg?branch=master)](https://travis-ci.org/node-machine/switchback)
 
 Normalize a callback to a "switchback" and vice versa.
 
@@ -94,13 +94,13 @@ mowLawn('quickly', 'zigzags')
 Adding an optional switchback interface to a function is pretty simple.  Just install:
 
 ```sh
-$ npm install node-switchback --save
+$ npm install switchback --save
 ```
 
 Require:
 
 ```js
-var switchback = require('node-switchback');
+var switchback = require('switchback');
 ```
 
 And then call `switchback()` on the callback at the top of your function, overriding the original value:
@@ -118,7 +118,7 @@ return cb;
 For example:
 
 ```javascript
-var switchback = require('node-switchback');
+var switchback = require('switchback');
 
 function myFunction (stuff, cb) {
   cb = switchback(cb);
@@ -263,4 +263,4 @@ This module is free and open-source under the [MIT License](http://sails.mit-lic
 ![image_squidhome@2x.png](http://i.imgur.com/RIvu9.png)
 
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/a22d3919de208c90c898986619efaa85 "githalytics.com")](http://githalytics.com/balderdashy/switchback)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/a22d3919de208c90c898986619efaa85 "githalytics.com")](http://githalytics.com/node-machine/switchback)
