@@ -85,5 +85,85 @@ describe('synchronous function w/ a switchback ::', function() {
 
   });
 
+});
+
+
+  ////////
+
+
+
+describe('synchronous function w/ a switchback + `immediate` set to true ::', function() {
+
+
+  var someSynchronousFn = function(foobar, cb) {
+    var sb = switchback(cb, {}, {}, true);
+    sb.success('some stuff');
+    return sb;
+  };
+
+
+  describe('when that function is called using a traditional node callback', function() {
+    it('should NOT wait for one cycle of the event loop', function() {
+
+      var data;
+      someSynchronousFn({
+        blah: 'this other argument doesnt matter',
+        blahblah: 'its the callback we care about'
+      }, function (err, _data) {
+        if (err) throw err;
+        data = _data;
+      });
+
+      assert.equal(data, 'some stuff');
+
+    });
+  });
+
+
+  describe('when that function is called using a handlers object', function() {
+
+    it('should NOT wait for one cycle of the event loop', function() {
+
+      var data;
+      someSynchronousFn({
+        blah: 'this other argument doesnt matter',
+        blahblah: 'its the callback we care about'
+      }, {
+        error: function(err) {
+          throw err;
+        },
+        success: function(_data) {
+          data = _data;
+        }
+      });
+
+      assert.equal(data, 'some stuff');
+
+    });
+
+  });
+
+
+  describe('when that function returns the switchback and relies on its EventEmitter properties', function() {
+
+    it('should fail with an error', function() {
+
+      someSynchronousFn({
+        blah: 'this other argument doesnt matter',
+        blahblah: 'its the callback we care about'
+      })
+      .on('error', function(err) {
+        throw new Error('should never get here');
+      })
+      .on('success', function(data) {
+        throw new Error('should never get here');
+      });
+
+      throw new Error('should have thrown error when trying to use .on()');
+
+    });
+
+  });
+
 
 });
