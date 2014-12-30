@@ -96,7 +96,7 @@ describe('synchronous function w/ a switchback + `immediate` set to true ::', fu
 
 
   var someSynchronousFn = function(foobar, cb) {
-    var sb = switchback(cb, {}, {}, true);
+    var sb = switchback(cb, undefined, undefined, true);
     sb.success('some stuff');
     return sb;
   };
