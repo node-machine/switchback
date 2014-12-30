@@ -148,18 +148,25 @@ describe('synchronous function w/ a switchback + `immediate` set to true ::', fu
 
     it('should fail with an error', function() {
 
-      someSynchronousFn({
-        blah: 'this other argument doesnt matter',
-        blahblah: 'its the callback we care about'
-      })
-      .on('error', function(err) {
-        throw new Error('should never get here');
-      })
-      .on('success', function(data) {
-        throw new Error('should never get here');
-      });
+      try {
+        someSynchronousFn({
+          blah: 'this other argument doesnt matter',
+          blahblah: 'its the callback we care about'
+        })
+        .on('error', function(err) {
+          throw new Error('should never get here');
+        })
+        .on('success', function(data) {
+          throw new Error('should never get here');
+        });
 
-      throw new Error('should have thrown error when trying to use .on()');
+        throw new Error('should have thrown error when trying to use .on()');
+      }
+      catch (e) {
+        if (e.code !== 'SWITCHBACK:E_USAGE') {
+          throw e;
+        }
+      }
 
     });
 
