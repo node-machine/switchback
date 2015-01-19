@@ -114,6 +114,59 @@ describe('switchback(Function)', function() {
 });
 
 
+describe('when calling returned switchback as sb(err), where `err` has an "exit" property that matches a known exit', function() {
+  it('should trigger the appropriate exit', function (done){
+    function myFn(sb){
+      sb = switchback(sb);
+      var err = new Error('HEY I\'M A BIG SCARY ERROR');
+      err.exit = 'foo';
+      setTimeout(function (){
+        sb(err);
+      }, 50);
+    }
+
+    myFn({
+      success: function (){
+        return done(new Error('Should have triggered the `foo` handler'));
+      },
+      error: function (err){
+        return done(new Error('Should have triggered the `foo` handler'));
+      },
+      foo: function (){
+        return done();
+      }
+    });
+
+  });
+});
+
+
+describe('when calling returned switchback as sb(err), where `err`\'s "exit" property DOES NOT match a known exit', function() {
+  it('should trigger the error exit', function (done){
+    function myFn(sb){
+      sb = switchback(sb);
+      var err = new Error('HEY I\'M A BIG SCARY ERROR');
+      err.exit = 'bar';
+      setTimeout(function (){
+        return sb(err);
+      }, 50);
+    }
+
+    myFn({
+      success: function (){
+        return done(new Error('Should have triggered the `error` handler, instead outcome was `success`'));
+      },
+      error: function (err){
+        return done();
+      },
+      foo: function (){
+        return done(new Error('Should have triggered the `error` handler, instead outcome was `foo`'));
+      }
+    });
+  });
+});
+
+
 
 describe('switchback(Handlers)', function() {
 
