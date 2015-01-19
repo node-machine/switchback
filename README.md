@@ -233,9 +233,25 @@ freeHouseholdPets({
 
 ## Using switchbacks with other flow control libraries
 
+For the examples below, imagine `juiceFruit(fruitName, sb)` is a switchback-enabled function (i.e. you can pass in exits or a callback for the `sb` argument).
+
 ##### with `async`
+
 ```javascript
-// TODO
+var fruits = ['apples', 'oranges', 'miracle fruit'];
+async.each(stuff, function (fruit, next){
+
+  // do stuff w/ fruit here...  (juice it, eat it, whatever you want)
+  juiceFruit(fruit, next);
+
+}, function afterwards(err){
+  if (err)  {
+    console.error('Oh no I made a mess:',err);
+    return;
+  }
+
+  console.log('mm mmm fruit');
+});
 ```
 
 ##### with `q` promises
