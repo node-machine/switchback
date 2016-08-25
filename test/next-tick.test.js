@@ -26,7 +26,7 @@ describe('synchronous function w/ a switchback ::', function() {
         blahblah: 'its the callback we care about'
       }, function (err, data) {
         clearTimeout(timer);
-        if (err) return done(err);
+        if (err) { return done(err); }
         assert.equal(data, 'some stuff');
         return done();
       });
@@ -110,7 +110,7 @@ describe('synchronous function w/ a switchback + `immediate` set to true ::', fu
         blah: 'this other argument doesnt matter',
         blahblah: 'its the callback we care about'
       }, function (err, _data) {
-        if (err) throw err;
+        if (err) { throw err; }
         data = _data;
       });
 
